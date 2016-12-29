@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
@@ -13,7 +12,7 @@ class CategoriesController extends ApiController
      *   description = "Get all Categories",
      *   output = "AppBundle\Entity\Category",
      *   statusCodes = {
-     *     200 = "OK",
+     *     200 = "Returned when successful",
      *   }
      * )
      *
@@ -21,7 +20,7 @@ class CategoriesController extends ApiController
      *
      * @return array
      */
-    public function getCategoriesAction() : array
+    public function getCategoriesAction()
     {
         return $this->getCategoryService()->getAllCategories();
     }

@@ -5,6 +5,12 @@ categories:
     resource: "@AppBundle/Controller/CategoriesController.php"
     type:     rest
     prefix: /api
+products:
+    resource: "@AppBundle/Controller/ProductsController.php"
+    type:     rest
+    prefix: /api
+
+# Documentation path
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix: /api/doc

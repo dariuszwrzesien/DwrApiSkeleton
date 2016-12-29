@@ -1,0 +1,6 @@
+AppBundle\Entity\Product:
+    exclusion_policy: ALL
+    properties:
+        id: { type: "integer",  expose: true }
+        name: { type: "string", expose: true }
+        category: { expose: true }

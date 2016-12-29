@@ -10,3 +10,6 @@ services:
       category.service:
           class: AppBundle\Service\CategoryService
           arguments: ["@doctrine"]
+      product.service:
+          class: AppBundle\Service\ProductService
+          arguments: ["@doctrine"]

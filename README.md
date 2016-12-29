@@ -15,4 +15,9 @@ Zasoby chronione:
 
     - Oferty specjalne
     
+    
+TODO:
+
 Zasoby chronione dostępne są z poziomu API tylko dla uwierzytelnionych użytkowników poprzez HMAC ?
+
+Paginacja dla produktów/kategorii/ofert_specjalnych

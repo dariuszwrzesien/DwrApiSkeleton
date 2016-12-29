@@ -30,7 +30,7 @@ class Product
 
     /**
      * Many Products have One Category.
-     * @ORM\ManyToOne(targetEntity="category")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;

@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class CategoryService
@@ -16,10 +17,13 @@ class CategoryService
     {
         $this->registry = $registry;
     }
+
     /**
+     * Gets all categories
+     *
      * @return array
      */
-    public function getAllCategories()
+    public function getAllCategories() : array
     {
         $repository = $this->registry->getRepository('AppBundle\Entity\Category');
         return $repository->findAll();

@@ -69,6 +69,12 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# Sensio Framework Extra
+sensio_framework_extra:
+    # View in the Sensio Framework Extra has to be set on true
+    # in order to use annotation @Rest/View in controllers
+    view:        { annotations: true }
+
 # FOS Rest
 fos_rest:
     routing_loader:
@@ -87,6 +93,14 @@ fos_rest:
         serialize_null: true
 
     param_fetcher_listener: true
+
+    # In order to have only code and message (without all stacktrace)
+    # in Response Body while exception is thrown
+    # set exception as below
+    exception:
+        enabled: true
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
 
 # JMS Serializer
 jms_serializer:

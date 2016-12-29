@@ -13,4 +13,12 @@ trait ServicesTrait
     {
         return $this->get('category.service');
     }
+
+    /**
+     * @return CategoryService
+     */
+    public function getProductService()
+    {
+        return $this->get('product.service');
+    }
 }
