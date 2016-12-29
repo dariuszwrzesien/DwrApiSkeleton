@@ -47,9 +47,6 @@ class SpecialProductsController extends ApiController
      */
     public function getSpecialproductAction($id) : SpecialProduct
     {
-        throw $this->createNotFoundException(
-            'No ticket found for id '.$id
-        );
         return $this->getSpecialProductService()->getSpecialProduct($id);
     }
 }
