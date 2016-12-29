@@ -28,6 +28,12 @@ class Product
      */
     private $name;
 
+    /**
+     * Many Products have One Category.
+     * @ORM\ManyToOne(targetEntity="category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
 
     /**
      * Get id
@@ -61,6 +67,30 @@ class Product
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Category $category
+     *
+     * @return Product
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
 
