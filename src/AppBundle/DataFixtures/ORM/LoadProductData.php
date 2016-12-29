@@ -34,7 +34,7 @@ class LoadProductData implements FixtureInterface
      * @param ObjectManager $manager
      * @return Category
      */
-    private function createCategory(ObjectManager $manager) : Category
+    private function createCategory(ObjectManager $manager)
     {
         $category = new Category();
         $category->setName('category 1');

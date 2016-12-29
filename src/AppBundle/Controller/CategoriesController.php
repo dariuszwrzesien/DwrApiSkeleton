@@ -3,9 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 class CategoriesController extends ApiController
 {
@@ -18,11 +17,11 @@ class CategoriesController extends ApiController
      *   }
      * )
      *
-     * @View(serializerGroups={"details"})
+     * @Rest\View()
      *
      * @return array
      */
-    public function getCategoriesAction()
+    public function getCategoriesAction() : array
     {
         return $this->getCategoryService()->getAllCategories();
     }

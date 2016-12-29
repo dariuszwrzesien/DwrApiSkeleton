@@ -11,6 +11,6 @@ trait ServicesTrait
      */
     public function getCategoryService()
     {
-//        return $this->get('category.service');
+        return $this->get('category.service');
     }
 }
