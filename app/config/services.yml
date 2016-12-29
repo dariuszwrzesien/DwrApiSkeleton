@@ -13,3 +13,6 @@ services:
       product.service:
           class: AppBundle\Service\ProductService
           arguments: ["@doctrine"]
+      special_product.service:
+          class: AppBundle\Service\SpecialProductService
+          arguments: ["@doctrine"]

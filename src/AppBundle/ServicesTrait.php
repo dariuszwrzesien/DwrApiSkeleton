@@ -15,10 +15,18 @@ trait ServicesTrait
     }
 
     /**
-     * @return CategoryService
+     * @return ProductService
      */
     public function getProductService()
     {
         return $this->get('product.service');
+    }
+
+    /**
+     * @return SpecialProductService
+     */
+    public function getSpecialProductService()
+    {
+        return $this->get('special_product.service');
     }
 }

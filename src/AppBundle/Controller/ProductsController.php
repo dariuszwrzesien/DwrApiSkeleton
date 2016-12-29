@@ -47,6 +47,9 @@ class ProductsController extends ApiController
      */
     public function getProductAction($id) : Product
     {
+        throw $this->createNotFoundException(
+            'No ticket found for id '.$id
+        );
         return $this->getProductService()->getProduct($id);
     }
 }

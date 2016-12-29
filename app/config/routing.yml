@@ -9,6 +9,10 @@ products:
     resource: "@AppBundle/Controller/ProductsController.php"
     type:     rest
     prefix: /api
+special_products:
+    resource: "@AppBundle/Controller/SpecialProductsController.php"
+    type:     rest
+    prefix: /api
 
 # Documentation path
 NelmioApiDocBundle:
