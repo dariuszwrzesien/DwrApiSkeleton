@@ -1,4 +1,18 @@
 DwrApiSkeleton
 ==============
 
-A Symfony project created on December 28, 2016, 8:32 am.
+Szkielet aplikacji REST zbudowany w oparciu o Symfony 3.2, FOS Rest Bundle, JMS Serializer.
+Dokumentacja API prowadzona w Nelmio Api Doc Bundle.
+
+Dostęp do dokumentacji: **adres_strony/api/doc**
+
+Zasoby publiczne:
+
+    - Produkty
+    - Kategorie produktów
+    
+Zasoby chronione:
+
+    - Oferty specjalne
+    
+Zasoby chronione dostępne są z poziomu API tylko dla uwierzytelnionych użytkowników poprzez HMAC ?
