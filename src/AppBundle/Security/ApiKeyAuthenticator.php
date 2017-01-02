@@ -1,38 +1,44 @@
 <?php
 
-namespace AppBundle\Service\Security;
+namespace AppBundle\Security;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\SimpleAuthenticatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
+use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 
-class ApiKeyAuthenticator implements SimpleAuthenticatorInterface, AuthenticationFailureHandlerInterface
+class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
 {
+    /**
+     * @var string
+     */
+    private $apiAnonymousKey;
+
+    /**
+     * ApiKeyAuthenticator constructor.
+     * @param string $apiAnonymousKey
+     */
+    public function __construct($apiAnonymousKey)
+    {
+        $this->apiAnonymousKey = $apiAnonymousKey;
+    }
+
     public function createToken(Request $request, $providerKey)
     {
         // look for an apikey query parameter
-        $apiKey = $request->query->get('apikey');
-
+        // $apiKey = $request->query->get('X-AUTH-KEY');
         // or if you want to use an "apikey" header, then do something like this:
-//         $apiKey = $request->headers->get('apikey');
+         $apiKey = $request->headers->get('X-AUTH-KEY');
 
         if (!$apiKey) {
-            throw new BadCredentialsException();
-
-            // or to just skip api key authentication
-//             return null;
+            // use api_anonymous_key from parameters.yml
+            $apiKey = $this->apiAnonymousKey;
         }
 
-        var_dump($apiKey);
-        var_dump($providerKey);
-
-        die(__FILE__ . '::' . __LINE__);
         return new PreAuthenticatedToken(
             'anon.',
             $apiKey,
@@ -74,16 +80,6 @@ class ApiKeyAuthenticator implements SimpleAuthenticatorInterface, Authenticatio
             $apiKey,
             $providerKey,
             $user->getRoles()
-        );
-    }
-
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
-    {
-        return new Response(
-        // this contains information about *why* authentication failed
-        // use it, or return your own message
-            strtr($exception->getMessageKey(), $exception->getMessageData()),
-            401
         );
     }
 }

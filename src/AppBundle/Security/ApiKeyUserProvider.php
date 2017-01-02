@@ -1,6 +1,10 @@
 <?php
-namespace AppBundle\Service\Security;
 
+namespace AppBundle\Security;
+
+use AppBundle\Entity\ApiUser;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -8,24 +12,32 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class ApiKeyUserProvider implements UserProviderInterface
 {
+    /**
+     * @var ObjectRepository
+     */
+    private $apiUserRepository;
+
+    /**
+     * ApiKeyUserProvider constructor.
+     * @param ObjectRepository $apiUserRepository
+     */
+    public function __construct(ObjectRepository $apiUserRepository)
+    {
+        $this->apiUserRepository = $apiUserRepository;
+    }
+
     public function getUsernameForApiKey($apiKey)
     {
-        // Look up the username based on the token in the database, via
-        // an API call, or do something entirely different
-        $username = 'api';
-
-        return $username;
+        $apiUser = $this->apiUserRepository->getOneByParam(['apiKey' => $apiKey]);
+        if (null === $apiUser) {
+            throw new BadCredentialsException();
+        }
+        return $apiUser->getUsername();
     }
 
     public function loadUserByUsername($username)
     {
-        return new User(
-            $username,
-            null,
-            // the roles for the user - you may choose to determine
-            // these dynamically somehow based on the user
-            array('ROLE_API')
-        );
+        return $this->apiUserRepository->getOneByParam(['email' => $username]);
     }
 
     public function refreshUser(UserInterface $user)
@@ -42,3 +54,4 @@ class ApiKeyUserProvider implements UserProviderInterface
         return User::class === $class;
     }
 }
+
