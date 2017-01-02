@@ -6,6 +6,8 @@ security:
     providers:
         in_memory:
             memory: ~
+        api_key_user_provider:
+            id: api_key_user_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,3 +24,12 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        api:
+            context: api
+            pattern: ^/api
+            stateless: true
+            simple_preauth:
+                authenticator: apikey_authenticator
+            provider: api_key_user_provider
+    access_control:
+        - { path: ^/api, roles: ROLE_API }

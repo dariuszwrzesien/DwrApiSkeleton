@@ -16,3 +16,9 @@ services:
       special_product.service:
           class: AppBundle\Service\SpecialProductService
           arguments: ["@doctrine"]
+      # Security
+      api_key_user_provider:
+              class: AppBundle\Service\Security\ApiKeyUserProvider
+      apikey_authenticator:
+              class:  AppBundle\Service\Security\ApiKeyAuthenticator
+              public: false
