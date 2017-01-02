@@ -36,4 +36,4 @@ security:
     access_control:
         - { path: ^/api/products, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/categories, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api, roles: ROLE_API }
+        - { path: ^/api, roles: ROLE_API }
