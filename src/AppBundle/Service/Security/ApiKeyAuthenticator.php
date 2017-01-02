@@ -11,7 +11,6 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
-use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 
 class ApiKeyAuthenticator implements SimpleAuthenticatorInterface, AuthenticationFailureHandlerInterface
 {
@@ -21,15 +20,19 @@ class ApiKeyAuthenticator implements SimpleAuthenticatorInterface, Authenticatio
         $apiKey = $request->query->get('apikey');
 
         // or if you want to use an "apikey" header, then do something like this:
-        // $apiKey = $request->headers->get('apikey');
+//         $apiKey = $request->headers->get('apikey');
 
         if (!$apiKey) {
-//            throw new BadCredentialsException();
+            throw new BadCredentialsException();
 
             // or to just skip api key authentication
-             return null;
+//             return null;
         }
 
+        var_dump($apiKey);
+        var_dump($providerKey);
+
+        die(__FILE__ . '::' . __LINE__);
         return new PreAuthenticatedToken(
             'anon.',
             $apiKey,

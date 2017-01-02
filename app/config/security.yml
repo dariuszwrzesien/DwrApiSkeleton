@@ -31,5 +31,9 @@ security:
             simple_preauth:
                 authenticator: apikey_authenticator
             provider: api_key_user_provider
+            security: true
+
     access_control:
-        - { path: ^/api, roles: ROLE_API }
+        - { path: ^/api/products, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/categories, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api, roles: ROLE_API }
