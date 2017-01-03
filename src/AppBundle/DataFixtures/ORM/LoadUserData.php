@@ -46,7 +46,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
     {
         $apiAnonymousUser = new ApiUser();
         $apiAnonymousUser->setEmail('anonymous@anonymous_dj8029h39.api');
-        $apiAnonymousUser->setApiKey($this->container->getParameter('api_anonymous_token'));
+        $apiAnonymousUser->setApiKey($this->container->getParameter('api_anonymous_key'));
         $apiAnonymousUser->setRoles(array('IS_AUTHENTICATED_ANONYMOUSLY'));
         $apiAnonymousUser->enable();
 
