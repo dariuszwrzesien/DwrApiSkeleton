@@ -15,9 +15,22 @@ Zasoby chronione:
 
     - Oferty specjalne
     
+Zasoby chronione są dostępne z poziomu API dla użytkowników z rolą API (ROLE_API).
+Przykład tworzenia użytkownika z dostępem do zasobów chronionych:
+
+```php
+use AppBundle\Entity\ApiUser;
+
+$apiUser = new ApiUser();
+$apiUser->setEmail('dariuszwrzesien+dwrApiSkeleton@gmail.com');
+$apiUser->setApiKey(ApiKeyGenerator::generate());
+$apiUser->setRoles(array('ROLE_API'));
+$apiUser->enable();
+```
     
 TODO:
 
-Zasoby chronione dostępne są z poziomu API tylko dla uwierzytelnionych użytkowników poprzez ApiKey
+Opisać jak działa autentykacja dla userów ze specjalnymi uprawnieniami i bez uprawnien
+Napisać testy do autentykacji
 
 Paginacja dla produktów/kategorii/ofert_specjalnych
