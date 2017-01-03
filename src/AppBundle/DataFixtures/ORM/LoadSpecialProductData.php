@@ -6,7 +6,6 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\SpecialProduct;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\User;
 
 class LoadSpecialProductData implements FixtureInterface
 {

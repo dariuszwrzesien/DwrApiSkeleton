@@ -16,3 +16,19 @@ services:
       special_product.service:
           class: AppBundle\Service\SpecialProductService
           arguments: ["@doctrine"]
+
+      # Repository
+      api_user_repository:
+          class: Doctrine\ORM\EntityRepository
+          factory: ["@doctrine.orm.entity_manager", getRepository]
+          arguments:
+            - AppBundle\Entity\ApiUser
+
+      # Security
+      api_key_user_provider:
+              class: AppBundle\Security\ApiKeyUserProvider
+              arguments: ["@api_user_repository"]
+      apikey_authenticator:
+              class:  AppBundle\Security\ApiKeyAuthenticator
+              public: false
+              arguments: ["%api_anonymous_key%"]
